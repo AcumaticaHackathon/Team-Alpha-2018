@@ -11,7 +11,7 @@ namespace Jamis.Web.Face
 
         public static IFaceApi GetFaceApi(this PXGraph graph)
         {
-            return new FaceApiFakeClient();
+            return new FaceApiClient(new FaceApiFakeClient(), new FaceApiStore(graph));
         }
     }
 }

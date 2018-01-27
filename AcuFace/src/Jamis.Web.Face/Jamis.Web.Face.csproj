@@ -60,7 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\FaceApi.cs" />
+    <Compile Include="Api\FaceApiClient.cs" />
     <Compile Include="Api\FaceApiFakeClient.cs" />
+    <Compile Include="Api\FaceApiStore.cs" />
     <Compile Include="Api\IFaceApi.cs" />
     <Compile Include="Model\DAC\PersonGroup.cs" />
     <Compile Include="Model\DAC\Person.cs" />
