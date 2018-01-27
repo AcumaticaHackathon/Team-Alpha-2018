@@ -14,6 +14,11 @@ namespace Jamis.Web.Face
             
         }
 
+        public Guid AddPersonFace(Person person, byte[] data)
+        {
+            return Guid.NewGuid();
+        }
+
         public PersonGroup CreateGroup(PersonGroup group)
         {
             return group;
@@ -32,6 +37,11 @@ namespace Jamis.Web.Face
         public void DeletePerson(Person person)
         {
            
+        }
+
+        public void DeletePersonFace(Person person, Guid faceId)
+        {
+
         }
 
         public IEnumerable<PersonGroup> GetGroups()

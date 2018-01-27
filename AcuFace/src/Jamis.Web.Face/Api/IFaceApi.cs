@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Jamis.Web.Face
 {
     public interface IFaceApi
     {
+        Guid AddPersonFace(Person person, byte[] imageData);
+
         PersonGroup CreateGroup(PersonGroup group);
 
         Person CreatePerson(Person person);
@@ -13,6 +16,8 @@ namespace Jamis.Web.Face
         void DeleteGroup(PersonGroup group);
 
         void DeletePerson(Person person);
+
+        void DeletePersonFace(Person person, Guid faceId);
 
         IEnumerable<PersonGroup> GetGroups();
 

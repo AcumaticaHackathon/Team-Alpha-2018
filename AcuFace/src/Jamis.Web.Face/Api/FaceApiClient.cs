@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Jamis.Web.Face
 {
@@ -13,6 +14,11 @@ namespace Jamis.Web.Face
             this.Client = client;
 
             this.Store = store;
+        }
+
+        public Guid AddPersonFace(Person person, byte[] data)
+        {
+            return Client.AddPersonFace(person, data);
         }
 
         public IEnumerable<PersonGroup> GetGroups()
@@ -64,6 +70,11 @@ namespace Jamis.Web.Face
         {
             Store.Clear<Person>(item.GroupName);
             Client.DeletePerson(item);
+        }
+
+        public void DeletePersonFace(Person person, Guid faceId)
+        {
+            Client.DeletePersonFace(person, faceId);
         }
 
         public void Close()

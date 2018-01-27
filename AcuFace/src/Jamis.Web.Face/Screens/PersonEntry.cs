@@ -1,4 +1,8 @@
-﻿using PX.Data;
+﻿using PX.Common;
+using PX.Data;
+using PX.SM;
+using PX.Web.UI;
+using System;
 using System.Collections;
 
 namespace Jamis.Web.Face.Screens
@@ -8,11 +12,26 @@ namespace Jamis.Web.Face.Screens
         [PXVirtualDAC]
         public PXSelect<Person> Persons;
 
+        private UploadFileMaintenance fileGraph;
+
         private IFaceApi Api;
 
         public PersonEntry()
         {
             this.Api = this.GetFaceApi();
+        }
+
+        protected UploadFileMaintenance FileGraph
+        {
+            get
+            {
+                if (this.fileGraph == null)
+                {
+                    this.fileGraph = PXGraph.CreateInstance<UploadFileMaintenance>();
+                }
+
+                return this.fileGraph;
+            }
         }
 
         public IEnumerable persons()
@@ -23,6 +42,15 @@ namespace Jamis.Web.Face.Screens
                 {
                     yield return person;
                 }
+            }
+        }
+
+        protected virtual void Person_RowSelected(PXCache sedner, PXRowSelectedEventArgs e)
+        {
+            var person = Persons.Current;
+            if (person != null)
+            {
+                uploadFile.SetEnabled(Persons.Cache.GetStatus(person) != PXEntryStatus.Inserted);
             }
         }
 
@@ -55,6 +83,85 @@ namespace Jamis.Web.Face.Screens
                     }
 
                     e.Cancel = true;
+                }
+            }
+        }
+
+        public PXSelect<Person> NewFacePanel;
+        public PXAction<Person> uploadFile;
+        [PXUIField(DisplayName = "Add Face", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select, Visible = true)]
+        [PXButton()]
+        public virtual IEnumerable UploadFile(PXAdapter adapter)
+        {
+            this.Save.Press();
+
+            if (this.NewFacePanel.AskExt() == WebDialogResult.OK)
+            {
+                var person = this.Persons.Current;
+
+                if (person != null)
+                {
+                    const string PanelSessionKey = "FaceFile";
+
+                    var info = PXContext.SessionTyped<PXSessionStatePXData>().FileInfo[PanelSessionKey] as PX.SM.FileInfo;
+
+                    try
+                    {
+                        var faceId = Api.AddPersonFace(person, info.BinData);
+
+                        info.UID = faceId;
+
+                        try
+                        {
+                            info.UID = faceId;
+
+                            SaveFile(info);
+                        }
+                        catch (Exception ex)
+                        {
+                            PXTrace.WriteError(ex);
+
+                            Api.DeletePersonFace(person, faceId);
+                        }
+                    }
+                    finally
+                    {
+                        System.Web.HttpContext.Current.Session.Remove(PanelSessionKey);
+                    }
+                }
+            }
+
+            return adapter.Get();
+        }
+
+        protected virtual void SaveFile(FileInfo file)
+        {
+            const string FilesField = "NoteFiles";
+
+            var person = Persons.Current;
+
+            if (person?.Id != null)
+            {
+                try
+                {
+                    PXBlobStorage.SaveContext = new PXBlobStorageContext
+                    {
+                        NoteID = person.Id,
+                        ViewName = Persons.View.Name,
+                        DataRow = person,
+                        Graph = this
+                    };
+
+                    if (this.FileGraph.SaveFile(file, FileExistsAction.CreateVersion))
+                    {
+                        PXNoteAttribute.ForcePassThrow(Persons.Cache, null);
+
+                        Persons.Cache.SetValueExt(person, FilesField, new Guid[] { file.UID.Value });
+                    }
+                }
+                finally
+                {
+                    PXBlobStorage.SaveContext = null;
                 }
             }
         }

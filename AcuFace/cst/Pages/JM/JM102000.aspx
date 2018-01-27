@@ -14,6 +14,7 @@
     </px:PXDataSource>
 </asp:Content>
 <asp:Content ID="cont2" ContentPlaceHolderID="phF" runat="Server">
+    <px:PXUploadDialog ID="pnlNewFace" Key="NewFacePanel" runat="server" Height="120px" Style="position: static" Width="560px" Caption="Face Upload" AutoSaveFile="false" RenderCheckIn="false" SessionKey="FaceFile" />
     <px:PXFormView ID="form" runat="server" DataSourceID="ds" DataMember="Persons" Width="100%" AllowAutoHide="false">
         <Template>
             <px:PXLayoutRule ID="PXLayoutRule1" runat="server" StartRow="True"></px:PXLayoutRule>
@@ -27,7 +28,9 @@
     <px:PXTab ID="tab" runat="server" Width="100%" Height="383px" DataSourceID="ds">
         <Items>
             <px:PXTabItem Text="Faces">
-                
+                <Template>
+                    <px:PXImageUploader ID="edImages" runat="server" Height="300px" Width="400px" AllowUpload="false" SuppressLabel="true" />
+                </Template>
             </px:PXTabItem>
         </Items>
         <AutoSize Container="Window" Enabled="True" MinHeight="150" />
