@@ -23,6 +23,7 @@ namespace Jamis.Web.Face
         }
 
         [PXDefault]
+        [PersonSelector]
         [PXUIField(DisplayName = "Name", Required = true)]
         [PXString(50, IsUnicode = true, IsKey = true)]
         public string Name { get; set; }
@@ -34,6 +35,7 @@ namespace Jamis.Web.Face
         }
 
         [PXDefault]
+        [PersonGroupSelector]
         [PXUIField(DisplayName = "Group", Required = true)]
         [PXString(50, IsUnicode = true, IsKey = true)]
         public string GroupName { get; set; }

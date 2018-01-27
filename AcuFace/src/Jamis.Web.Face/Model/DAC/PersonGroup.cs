@@ -13,6 +13,7 @@ namespace Jamis.Web.Face
         }
 
         [PXDefault]
+        [PersonGroupSelector]
         [PXUIField(DisplayName = "Name", Required = true)]
         [PXString(50, IsUnicode = true, IsKey = true)]
         public string Name { get; set; }
