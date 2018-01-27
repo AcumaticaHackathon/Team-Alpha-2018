@@ -60,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\DAC\PersonGroup.cs" />
+    <Compile Include="Model\DAC\Person.cs" />
     <Compile Include="Screens\GroupEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\PersonEntry.cs" />

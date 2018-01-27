@@ -2,7 +2,7 @@
 
 namespace Jamis.Web.Face.Screens
 {
-    class PersonEntry : PXGraph<PersonEntry>
+    public class PersonEntry : PXGraph<PersonEntry, Person>
     {
     }
 }
