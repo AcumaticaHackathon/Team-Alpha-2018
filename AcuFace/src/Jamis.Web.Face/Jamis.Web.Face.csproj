@@ -60,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\FaceApiFakeClient.cs" />
+    <Compile Include="Api\IFaceApi.cs" />
     <Compile Include="Model\DAC\PersonGroup.cs" />
     <Compile Include="Model\DAC\Person.cs" />
     <Compile Include="Screens\GroupEntry.cs" />
