@@ -128,6 +128,13 @@ namespace Jamis.Web.Face.Screens
                     {
                         System.Web.HttpContext.Current.Session.Remove(PanelSessionKey);
                     }
+
+                    PXLongOperation.StartOperation(this, () =>
+                    {
+
+                        Api.Train(person.GroupName);
+
+                    });
                 }
             }
 
