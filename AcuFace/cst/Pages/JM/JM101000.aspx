@@ -7,7 +7,7 @@
         TypeName="Jamis.Web.Face.Screens.GroupEntry"
         PrimaryView="Groups">
         <CallbackCommands>
-            <px:PXDSCallbackCommand Name="Identify" />
+            <px:PXDSCallbackCommand Name="Identify"  Visible="false" />
         </CallbackCommands>
     </px:PXDataSource>
 </asp:Content>
@@ -17,8 +17,36 @@
             <px:PXLayoutRule ID="PXLayoutRule1" runat="server" StartRow="True"></px:PXLayoutRule>
             <px:PXSelector runat="server" ID="CstPXSelector3" DataField="Name" />
             <px:PXTextEdit runat="server" ID="CstPXTextEdit4" DataField="UserData" />
+            <px:PXButton runat="server" ID="btnIdentify" Text="Identify">
+                <ClientEvents Click="btnIdentifyClick" />
+            </px:PXButton>
         </Template>
     </px:PXFormView>
+    
+    <script type="text/javascript">
+
+        function btnIdentifyClick(sender, e)
+        {
+            if (typeof (window.top.FaceApi) != "undefined" && typeof (window.faceApi) == "undefined")
+            {
+                window.faceApi = new window.top.FaceApi();
+            }
+
+            if (typeof (window.faceApi) != "undefined")
+            {
+                window.faceApi.open(function (api)
+                {
+                    if (api.data)
+                    {
+                        px_all["<%= ds.ClientID %>"].executeCallback('Identify', api.data);
+                    }
+                });
+            }
+
+            e.cancel = true;
+        }
+
+    </script>
 </asp:Content>
 <asp:Content ID="cont3" ContentPlaceHolderID="phG" runat="Server">
     <px:PXTab ID="tab" runat="server" Width="100%" Height="383px" DataSourceID="ds" DataMember="Persons">
