@@ -1,1 +1,0 @@
-"C:\Program Files (x86)\Acumatica ERP\h1\App_Data\Projects\AcuFace\AcuFace.sln"
