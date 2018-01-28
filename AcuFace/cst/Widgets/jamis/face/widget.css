@@ -1,0 +1,109 @@
+﻿
+.face-api-button {
+}
+
+#face-api-close {
+    line-height: 0;
+    display: inline-block;
+    position: fixed;
+    z-index: 10;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+    color: #70C041;
+    opacity: 0.5;
+    transition: all 0.66s ease;
+    -webkit-transition: all 0.66s ease;
+}
+
+    #face-api-close:hover {
+        opacity: 1;
+    }
+
+
+    #face-api-close .bar1,
+    #face-api-close .bar2,
+    #face-api-close .bar3 {
+        width: 35px;
+        height: 5px;
+        background-color: rgba(114, 192, 65, 0.664);
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+
+    #face-api-close .bar3 {
+        -webkit-transform: rotate(45deg) translate(-8px, -8px);
+        transform: rotate(45deg) translate(-8px, -8px);
+    }
+
+    #face-api-close .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+        transform: rotate(-45deg) translate(-9px, 6px);
+    }
+
+    #face-api-close .bar2 {
+        opacity: 0;
+    }
+
+
+
+#face-api-window {
+}
+
+    #face-api-window section {
+        padding: 5px 0 0 5px
+    }
+
+        #face-api-window section.actions {
+            text-align: right;
+        }
+
+    #face-api-window textarea {
+        width: 100%
+    }
+
+    #face-api-window label {
+        display: block;
+        opacity: .5
+    }
+
+
+#face-api-window-close {
+    float: right;
+}
+
+#face-api-window-header {
+    cursor: default;
+    line-height: 28px;
+    float: left;
+}
+
+#face-api-widget {
+    display: none;
+    left: 50%;
+    height: 200px;
+    width: 300px;
+    margin: -100px 0 0 -150px;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    z-index: 9000;
+}
+
+    #face-api-overlay.active, #face-api-widget.active {
+        display: block;
+    }
+
+
+#face-api-video {
+    cursor: pointer;
+}
+
+#face-api-image {
+    cursor: pointer;
+}
+
+#face-api-canvas {
+    display: none;
+}
+/*# sourceURL=face-widget.css*/
