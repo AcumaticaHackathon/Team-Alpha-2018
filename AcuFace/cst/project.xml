@@ -1,4 +1,42 @@
 <Customization level="0" description="" product-version="17.200">
+    <Page path="~/pages/sm/sm201060.aspx" ControlId="4" pageSource="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">
+        <PXFormView ID="form" ParentId="phF_form" TypeFullName="PX.Web.UI.PXFormView">
+            <Children Key="Template">
+                <AddItem>
+                    <PXLayoutRule TypeFullName="PX.Web.UI.PXLayoutRule">
+                        <Prop Key="Virtual:ApplyStylesheetSkin" />
+                        <Prop Key="ID" Value="CstPXLayoutRule1" />
+                        <Prop Key="StartColumn" Value="True" />
+                        <Prop Key="ControlSize" Value="XL" />
+                        <Prop Key="LabelsWidth" Value="L" />
+                    </PXLayoutRule>
+                </AddItem>
+                <AddItem>
+                    <PXLayoutRule TypeFullName="PX.Web.UI.PXLayoutRule">
+                        <Prop Key="Virtual:ApplyStylesheetSkin" />
+                        <Prop Key="ID" Value="CstPXLayoutRule4" />
+                        <Prop Key="StartGroup" Value="True" />
+                        <Prop Key="GroupCaption" Value="Face API" />
+                    </PXLayoutRule>
+                </AddItem>
+                <AddItem>
+                    <PXTextEdit TypeFullName="PX.Web.UI.PXTextEdit">
+                        <Prop Key="Virtual:ApplyStylesheetSkin" />
+                        <Prop Key="ID" Value="CstPXTextEdit2" />
+                        <Prop Key="DataField" Value="UsrFaceApiID" />
+                    </PXTextEdit>
+                </AddItem>
+                <AddItem>
+                    <PXTextEdit TypeFullName="PX.Web.UI.PXTextEdit">
+                        <Prop Key="Virtual:ApplyStylesheetSkin" />
+                        <Prop Key="ID" Value="CstPXTextEdit3" />
+                        <Prop Key="DataField" Value="UsrFaceAPIUrl" />
+                    </PXTextEdit>
+                </AddItem>
+                <PXLayoutRule OriginalIndex="16" />
+            </Children>
+        </PXFormView>
+    </Page>
     <Page path="~/pages/ep/ep503010.aspx" ControlId="1" pageSource="rVdtTyM3EP4MEv/B3YoTSG1e7kpV0SRq2CQHEoGI5OC+IbPrJD689p7tzctVvd9+M3Y2yS7QXsNFKHJm7GdmnhmPh8bhX2RAJ4xcUjnJYNEMwp8D0qfGMo2KHhcg+1rdSEz1kht7y9m8kjhhQNqZVd0Zk/aOa5alzcDqjAXklgoeU8tu2OeMGdsMxlQYkIcqXuF2Bye1d7V6rUJNuqhEJjjYJ/C5kFOmuTXNAA3e57sCMuIWj32QFhexcz0gh62D/YP9BoTivRwtU0ZuubYZFQNqp//pPwI0wIXTUEkLYZCLTjOIYF1HZ51oIGjEzpWImUZlOu0MA6IzSSGsIdMzgGl55xsm0jy1xIIXwARb2OonOqNeipv29saZjCxXkmg21sxMR9Q8mraMHYfmyDAJZn4hVE/MMe7/G7/2ZlQTq1LSJHMuYzWvwI8/nYaPyRFqfspV5M0b3FrpUy57miYMVTIT4rgorqwc8IYv5FgdHTvIf+CrUfU+53Gli9PBxw61dKgyHTFHUmzWLBjPAhBv+ANmaeSK4I7HmIF6rXYI+QNOrsAuJPZj5frhE4usqXQH8NdOU61mkC+tImYAdaB5QvUS89QMblikNNhaueLcCakQDzR6DFWSUBmbbV31BWWjWgoCE1/dyvxLhfDby4VwWWagwNd7zWOHMoHFE642juRknjM+mcKO+kktXQRkaJdI5ZdfIa1scUqAxhKlbVdJZqAMxwXQrtJgQ0VIUy8OBeUJGLiWN2qOds9UJmPv1/22CIw+con+rFJwIT9ncK9BvpTRlh1MbyEhggM/vpRIeww368ZXVzN4ts4DUm2tzm6hXLIZEyZXlLRFXt1Wx2GfJQ9Mb+qEtIpn3DkIcsSSVEBHapWVT834ctk+84w+VCJLpHlGVfTU7yNtIdQ8nLLoEVb5BXHCqwwFPd8fMaIeZyLG1iLgjjBIyggaSVvwCaYS2MPqGbkO4/DO1GJdF+9c5VS/16kta10TUQw1XmP94bC+w/b61q9icFENp2p+zuN1L8ACWm/0j8EubnZUhOZXTkI/xKuwa8xQo1fKwv37MXDgG/wq9L1doc7aUQQX0q5dA7S3iPY6sPt8eU+jyGI3LsHvFjeDx2IN9PbkFUCWcmF+BFSoGRYz5mPEn4bZ4QYu9rKndII9ebKjkQw65CZDv5/smCDEGSlLRTvB5BQu3Q2+CZs7WUfv+9RqvugrvF1+3NrF6p3SjxOtsvRJke0Edz2X+CyWqz+n2nuLgTmK9v4PdD4gIHq52RT6SlnGBbfLtdjZxc+/2jIGeE+g1fVp+jqDz7EI48mL70bjki5VZglWJc4++TwQtBpVryodWo006/ewMAatHtMtkR8XzmCU7LAxzYT1Auj9Mbf+7hV8buBsP+RfmJt/YG7EZ/bODZkB6UoKDMR5e+9zuTW+FCuogbn3r8KHFP8pKGSkFMgzU9k3">
         <Content ID="cont4" ParentId="phL" TypeFullName="System.Web.UI.WebControls.Content">
             <Children Key="Controls">
