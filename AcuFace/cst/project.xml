@@ -24,6 +24,7 @@
             <Prop Key="Virtual:ApplyStylesheetSkin" />
             <Prop Key="ID" Value="CstPXTextEdit2" />
             <Prop Key="DataField" Value="UsrFaceApiID" />
+            <Prop Key="TextMode" Value="Password" />
           </PXTextEdit>
         </AddItem>
         <AddItem>
@@ -174,7 +175,7 @@ namespace PX.Objects.EP
     <Field FieldName="UsrFaceAPIUrl" TypeName="string" MapDbTable="PreferencesSecurity" TextAttributes="#CDATA" StorageName="AddColumn">
       <CDATA name="TextAttributes">
         <![CDATA[[PXDBString(256)]
-[PXUIField(DisplayName="Url")]]]>
+[PXUIField(DisplayName="Service Url")]]]>
       </CDATA>
     </Field>
   </DAC>
