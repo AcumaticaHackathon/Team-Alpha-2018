@@ -5,7 +5,10 @@
 <asp:Content ID="cont1" ContentPlaceHolderID="phDS" runat="Server">
     <px:PXDataSource ID="ds" runat="server" Visible="True" Width="100%"
         TypeName="Jamis.Web.Face.Screens.GroupEntry"
-        PrimaryView="Groups">        
+        PrimaryView="Groups">
+        <CallbackCommands>
+            <px:PXDSCallbackCommand Name="Identify" />
+        </CallbackCommands>
     </px:PXDataSource>
 </asp:Content>
 <asp:Content ID="cont2" ContentPlaceHolderID="phF" runat="Server">
@@ -14,7 +17,6 @@
             <px:PXLayoutRule ID="PXLayoutRule1" runat="server" StartRow="True"></px:PXLayoutRule>
             <px:PXSelector runat="server" ID="CstPXSelector3" DataField="Name" />
             <px:PXTextEdit runat="server" ID="CstPXTextEdit4" DataField="UserData" />
-           
         </Template>
     </px:PXFormView>
 </asp:Content>

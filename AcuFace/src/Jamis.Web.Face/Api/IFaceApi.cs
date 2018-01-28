@@ -5,6 +5,12 @@ namespace Jamis.Web.Face
 {
     public interface IFaceApi
     {
+        Guid[] Detect(byte[] imageData);
+
+        IEnumerable<Candidate> Identify(string groupName, Guid[] faceIDs);
+
+        void Train(string groupName);
+
         Guid AddPersonFace(Person person, byte[] imageData);
 
         PersonGroup CreateGroup(PersonGroup group);

@@ -14,6 +14,28 @@ namespace Jamis.Web.Face
             
         }
 
+        public IEnumerable<Candidate> Identify(string groupName, Guid[] faceIDs)
+        {
+            return new Candidate[]
+            {
+                new Candidate
+                {
+                    PersonId =  Guid.Empty,
+                    Confidence = 0
+                }
+            };
+        }
+
+        public Guid[] Detect(byte[] imageData)
+        {
+            return new Guid[] { Guid.NewGuid() };
+        }
+
+        public void Train(string groupName)
+        {
+            System.Threading.Thread.Sleep(3000);
+        }
+
         public Guid AddPersonFace(Person person, byte[] data)
         {
             return Guid.NewGuid();

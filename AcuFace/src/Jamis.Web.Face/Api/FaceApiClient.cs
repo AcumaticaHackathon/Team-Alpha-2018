@@ -16,6 +16,22 @@ namespace Jamis.Web.Face
             this.Store = store;
         }
 
+        public IEnumerable<Candidate> Identify(string groupName, Guid[] faceIDs)
+        {
+            return Client.Identify(groupName, faceIDs);
+        }
+
+        public Guid[] Detect(byte[] imageData)
+        {
+            return Client.Detect(imageData);
+        }
+
+        public void Train(string groupName)
+        {
+            Client.Train(groupName);
+        }
+
+
         public Guid AddPersonFace(Person person, byte[] data)
         {
             return Client.AddPersonFace(person, data);

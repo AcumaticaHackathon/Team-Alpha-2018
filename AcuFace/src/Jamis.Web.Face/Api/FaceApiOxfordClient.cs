@@ -10,7 +10,23 @@ namespace Jamis.Web.Face
     public class FaceApiOxfordClient : IFaceApi, IDisposable
     {
         private FaceServiceClient Api = new FaceServiceClient(FaceApi.SubscriptionID, FaceApi.ServiceUrl);
-      
+
+        public IEnumerable<Candidate> Identify(string groupName, Guid[] faceIDs)
+        {
+            try
+            {
+                return Task.Run(() => Api.IdentifyAsync(groupName.ToLowerInvariant(), faceIDs)).GetAwaiter().GetResult().SelectMany(x => x.Candidates).Select(x => new Candidate
+                {
+                    PersonId = x.PersonId,
+                    Confidence = x.Confidence,
+                });
+            }
+            catch (FaceAPIException ex)
+            {
+                throw new FaceApiException(ex.ErrorMessage);
+            }
+        }
+
         public Guid[] Detect(byte[] imageData)
         {
             try

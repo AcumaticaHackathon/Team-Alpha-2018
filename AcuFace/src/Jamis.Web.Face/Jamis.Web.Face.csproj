@@ -67,6 +67,7 @@
     <Compile Include="Api\FaceApiOxfordClient.cs" />
     <Compile Include="Api\FaceApiStore.cs" />
     <Compile Include="Api\IFaceApi.cs" />
+    <Compile Include="Model\DAC\Candidate.cs" />
     <Compile Include="Model\DAC\PersonGroup.cs" />
     <Compile Include="Model\DAC\Person.cs" />
     <Compile Include="Model\DAC\PersonGroupSelector.cs" />

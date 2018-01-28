@@ -40,7 +40,54 @@ namespace Jamis.Web.Face.Screens
 
             return Api.GetPersons(group.Name);
         }
-     
+
+        public PXAction<PersonGroup> train;
+        [PXUIField(DisplayName = "Train", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select, Visible = true)]
+        [PXButton()]
+        public virtual IEnumerable Train(PXAdapter adapter)
+        {
+            var group = Groups.Current;
+
+            if (group?.Name != null)
+            {
+                PXLongOperation.StartOperation(this, () =>
+                {
+
+                    Api.Train(group.Name);
+
+                });
+            }
+
+            return adapter.Get();
+        }
+
+        public PXAction<PersonGroup> identify;
+        [PXUIField(DisplayName = "Identify", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select, Visible = true)]
+        [PXButton()]
+        public virtual IEnumerable Identify(PXAdapter adapter)
+        {
+            if (Groups.View.Answer == WebDialogResult.None)
+            {
+                PXLongOperation.StartOperation(this, () =>
+                {
+                    var person = Api.IdentifyPerson(adapter.CommandArguments, adapter.Get<PersonGroup>().FirstOrDefault().Name);
+                    if (person != null)
+                    {
+                        Groups.Ask("Person identification", $"{person.Name} has been identified successfully!", MessageButtons.OK);
+                        return;
+                    }
+
+                    Groups.Ask("Person identification", "Failed to identify any person.", MessageButtons.OK);
+                });
+            }
+            else
+            {
+                Groups.ClearDialog();
+            }
+
+            return adapter.Get();
+        }
+
         protected virtual void PersonGroup_RowSelected(PXCache sedner, PXRowSelectedEventArgs e)
         {
             var group = Groups.Current;
