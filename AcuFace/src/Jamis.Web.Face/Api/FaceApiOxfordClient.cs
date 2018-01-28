@@ -9,7 +9,12 @@ namespace Jamis.Web.Face
 {
     public class FaceApiOxfordClient : IFaceApi, IDisposable
     {
-        private FaceServiceClient Api = new FaceServiceClient(FaceApi.SubscriptionID, FaceApi.ServiceUrl);
+        private FaceServiceClient Api;
+
+        public FaceApiOxfordClient(string subscriptionID, string serviceUrl)
+        {
+            Api = new FaceServiceClient(subscriptionID, serviceUrl);
+        }
 
         public IEnumerable<Candidate> Identify(string groupName, Guid[] faceIDs)
         {

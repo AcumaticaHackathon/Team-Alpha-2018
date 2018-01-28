@@ -1,4 +1,5 @@
 ﻿using PX.Data;
+using PX.SM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,6 @@ namespace Jamis.Web.Face
 {
     public static class FaceApi
     {
-        public const string SubscriptionID = "993090911ad44e028fa4f5ed47f80fea";
-
-        public const string ServiceUrl = "https://eastus.api.cognitive.microsoft.com/face/v1.0/";
-
         public static IFaceApi GetFaceApi(this PXCache cache)
         {
             return GetFaceApi(cache.Graph);
@@ -18,9 +15,14 @@ namespace Jamis.Web.Face
 
         public static IFaceApi GetFaceApi(this PXGraph graph)
         {
-            return new FaceApiClient(new FaceApiOxfordClient(), new FaceApiStore(graph));
-        }
+            var settings = new PXSetup<PreferencesSecurity>(graph);
 
+            var subscriptionId = (string)settings.Cache.GetValue(settings.Current, "UsrFaceApiID");
+
+            var sericeUrl = (string)settings.Cache.GetValue(settings.Current, "UsrFaceApiURL");
+
+            return new FaceApiClient(new FaceApiOxfordClient(subscriptionId, sericeUrl), new FaceApiStore(graph));
+        }
 
         public static IEnumerable<Candidate> IdentifyCandidates(this IFaceApi api, string imageDataUrl, string groupName)
         {
