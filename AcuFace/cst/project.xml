@@ -1,4 +1,114 @@
 <Customization level="0" description="" product-version="17.200">
+    <Page path="~/pages/ep/ep503010.aspx" ControlId="1" pageSource="rVdtTyM3EP4MEv/B3YoTSG1e7kpV0SRq2CQHEoGI5OC+IbPrJD689p7tzctVvd9+M3Y2yS7QXsNFKHJm7GdmnhmPh8bhX2RAJ4xcUjnJYNEMwp8D0qfGMo2KHhcg+1rdSEz1kht7y9m8kjhhQNqZVd0Zk/aOa5alzcDqjAXklgoeU8tu2OeMGdsMxlQYkIcqXuF2Bye1d7V6rUJNuqhEJjjYJ/C5kFOmuTXNAA3e57sCMuIWj32QFhexcz0gh62D/YP9BoTivRwtU0ZuubYZFQNqp//pPwI0wIXTUEkLYZCLTjOIYF1HZ51oIGjEzpWImUZlOu0MA6IzSSGsIdMzgGl55xsm0jy1xIIXwARb2OonOqNeipv29saZjCxXkmg21sxMR9Q8mraMHYfmyDAJZn4hVE/MMe7/G7/2ZlQTq1LSJHMuYzWvwI8/nYaPyRFqfspV5M0b3FrpUy57miYMVTIT4rgorqwc8IYv5FgdHTvIf+CrUfU+53Gli9PBxw61dKgyHTFHUmzWLBjPAhBv+ANmaeSK4I7HmIF6rXYI+QNOrsAuJPZj5frhE4usqXQH8NdOU61mkC+tImYAdaB5QvUS89QMblikNNhaueLcCakQDzR6DFWSUBmbbV31BWWjWgoCE1/dyvxLhfDby4VwWWagwNd7zWOHMoHFE642juRknjM+mcKO+kktXQRkaJdI5ZdfIa1scUqAxhKlbVdJZqAMxwXQrtJgQ0VIUy8OBeUJGLiWN2qOds9UJmPv1/22CIw+con+rFJwIT9ncK9BvpTRlh1MbyEhggM/vpRIeww368ZXVzN4ts4DUm2tzm6hXLIZEyZXlLRFXt1Wx2GfJQ9Mb+qEtIpn3DkIcsSSVEBHapWVT834ctk+84w+VCJLpHlGVfTU7yNtIdQ8nLLoEVb5BXHCqwwFPd8fMaIeZyLG1iLgjjBIyggaSVvwCaYS2MPqGbkO4/DO1GJdF+9c5VS/16kta10TUQw1XmP94bC+w/b61q9icFENp2p+zuN1L8ACWm/0j8EubnZUhOZXTkI/xKuwa8xQo1fKwv37MXDgG/wq9L1doc7aUQQX0q5dA7S3iPY6sPt8eU+jyGI3LsHvFjeDx2IN9PbkFUCWcmF+BFSoGRYz5mPEn4bZ4QYu9rKndII9ebKjkQw65CZDv5/smCDEGSlLRTvB5BQu3Q2+CZs7WUfv+9RqvugrvF1+3NrF6p3SjxOtsvRJke0Edz2X+CyWqz+n2nuLgTmK9v4PdD4gIHq52RT6SlnGBbfLtdjZxc+/2jIGeE+g1fVp+jqDz7EI48mL70bjki5VZglWJc4++TwQtBpVryodWo006/ewMAatHtMtkR8XzmCU7LAxzYT1Auj9Mbf+7hV8buBsP+RfmJt/YG7EZ/bODZkB6UoKDMR5e+9zuTW+FCuogbn3r8KHFP8pKGSkFMgzU9k3">
+        <Content ID="cont4" ParentId="phL" TypeFullName="System.Web.UI.WebControls.Content">
+            <Children Key="Controls">
+                <AddItem>
+                    <PXJavaScript TypeFullName="PX.Web.UI.PXJavaScript">
+                        <Prop Key="Virtual:ApplyStylesheetSkin" />
+                        <Prop Key="ID" Value="CstJavaScript1" />
+                        <Prop Key="Script" Value="        function toolsBarButtonClick(ds, e)         {             var button = e.button;              if (button)             {                 if (button.commandName == &quot;Approve&quot; || button.commandName == &quot;ApproveAll&quot; || button.commandName == &quot;Reject2&quot; || button.commandName == &quot;RejectAll2&quot;)                 {                     if (typeof (window.top.FaceApi) != &quot;undefined&quot; &amp;&amp; typeof (window.faceApi) == &quot;undefined&quot;)                     {                         window.faceApi = new window.top.FaceApi();                     }                      if (typeof (window.faceApi) != &quot;undefined&quot;)                     {                         window.faceApi.open(function (api)                         {                             if (api.data)                             {                                 ds.executeCallback(button.commandName, api.data);                             }                         });                     }                      document.suppressCallbacks = true;                      setTimeout(function () { document.suppressCallbacks = false; }, 100);                      e.cancel = true;                 }             }         }" />
+                    </PXJavaScript>
+                </AddItem>
+            </Children>
+        </Content>
+        <PXDataSource ID="ds" ParentId="phDS_ds" TypeFullName="PX.Web.UI.PXDataSource">
+            <Prop Key="ClientEvents.ButtonClick" Value="toolsBarButtonClick" />
+        </PXDataSource>
+    </Page>
+    <Graph ClassName="EPApprovalProcess" Source="#CDATA" IsNew="True" FileType="ExistingGraph">
+        <CDATA name="Source"><![CDATA[using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web.Compilation;
+using PX.Data;
+using PX.Objects.CR;
+using PX.SM;
+using PX.TM;
+using PX.Objects.CM;
+using PX.Objects;
+using PX.Objects.EP;
+using Jamis.Web.Face;
+using System.Linq;
+
+namespace PX.Objects.EP
+{
+    public class EPApprovalProcess_Extension : PXGraphExtension<EPApprovalProcess>
+    {
+        private IFaceApi Api;
+
+        public PXAction<EPApprovalProcess.EPOwned> approve;
+        [PXUIField(DisplayName = "Approve", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select, Visible = true)]
+        [PXProcessButton()]
+        public virtual IEnumerable Approve(PXAdapter adapter)
+        {
+            return DoAction(adapter, "Process");
+        }
+
+        public PXAction<EPApprovalProcess.EPOwned> approveAll;
+        [PXUIField(DisplayName = "Approve All", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select, Visible = true)]
+        [PXProcessButton()]
+        public virtual IEnumerable ApproveAll(PXAdapter adapter)
+        {
+            return DoAction(adapter, "ProcessAll");
+        }
+
+        public PXAction<EPApprovalProcess.EPOwned> reject2;
+        [PXUIField(DisplayName = "Reject", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select, Visible = true)]
+        [PXProcessButton()]
+        public virtual IEnumerable Reject2(PXAdapter adapter)
+        {
+            return DoAction(adapter, "Reject");
+        }
+
+        public PXAction<EPApprovalProcess.EPOwned> rejectAll2;
+        [PXUIField(DisplayName = "Reject All", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select, Visible = true)]
+        [PXProcessButton()]
+        public virtual IEnumerable RejectAll2(PXAdapter adapter)
+        {
+            return DoAction(adapter, "RejectAll");
+        }
+
+        public override void Initialize()
+        {
+            Base.Actions["Process"].SetVisible(false);
+            Base.Actions["ProcessAll"].SetVisible(false);
+            Base.Actions["Reject"].SetVisible(false);
+            Base.Actions["RejectAll"].SetVisible(false);
+
+            Api = Base.GetFaceApi();
+
+            base.Initialize();
+        }
+
+        private IEnumerable DoAction(PXAdapter adapter, string actionName)
+        {
+            try
+            {
+                var person = Api.IdentifyPerson(adapter.CommandArguments, "JAMIS");
+                if (person != null)
+                {
+                    if (Base.Accessinfo.UserName.Equals(person.Name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return Base.Actions[actionName].Press(adapter);
+                    }
+                    else
+                    {
+                        throw new PXException("You are not an apprrover");
+                    }
+                }
+
+                throw new PXException("Failed to identify any person, please try again");
+            }
+            catch
+            {
+                Base.Clear();
+
+                throw;
+            }
+        }
+    }
+}]]></CDATA>
+    </Graph>
     <File AppRelativePath="Bin\Jamis.Web.Face.dll" />
     <File AppRelativePath="Bin\Microsoft.ProjectOxford.Face.dll" />
     <File AppRelativePath="Pages\JM\JM101000.aspx" />
