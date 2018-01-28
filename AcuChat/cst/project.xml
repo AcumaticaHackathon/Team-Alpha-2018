@@ -1,0 +1,10 @@
+<Customization level="0" description="" product-version="17.200">
+    <File AppRelativePath="Bin\Jamis.Web.Chat.dll" />
+    <File AppRelativePath="Scripts\jquery.animation.js" />
+    <File AppRelativePath="Scripts\jquery.ui-1.12.1.js" />
+    <File AppRelativePath="Widgets\jamis\chat\chat-button.png" />
+    <File AppRelativePath="Widgets\jamis\chat\send-button.png" />
+    <File AppRelativePath="Widgets\jamis\chat\widget.css" />
+    <File AppRelativePath="Widgets\jamis\chat\widget.html" />
+    <File AppRelativePath="Widgets\jamis\chat\widget.js" />
+</Customization>
