@@ -1,4 +1,5 @@
 ﻿using PX.Data;
+using PX.SM;
 using System.Collections;
 using System.Linq;
 
@@ -16,6 +17,7 @@ namespace Jamis.Web.Face.Screens
 
         public GroupEntry()
         {
+            this.Persons.AllowDelete = false;
             this.Api = this.GetFaceApi();
         }
 
@@ -96,7 +98,7 @@ namespace Jamis.Web.Face.Screens
             {
                 var inserted = Groups.Cache.GetStatus(group) == PXEntryStatus.Inserted;
 
-                Persons.AllowDelete = Persons.AllowUpdate = Persons.AllowInsert = !inserted;
+                Persons.AllowUpdate = Persons.AllowInsert = !inserted;
 
                 PXUIFieldAttribute.SetEnabled(Groups.Cache, group, inserted);
 
@@ -119,14 +121,26 @@ namespace Jamis.Web.Face.Screens
                 {
                     case PXDBOperation.Delete:
                         Api.DeleteGroup(group);
+                        sender.Remove(group);
+                        e.Cancel = true;
                         break;
                     case PXDBOperation.Insert:
                         Api.CreateGroup(group);
+                        e.Cancel = true;
+                        break;
+                    case PXDBOperation.Update:
+                        e.Cancel = true;
                         break;
                 }
-
-                e.Cancel = true;
             }
+        }
+
+        [PXDefault]
+        [PXSelector(typeof(Search<Users.username>), ValidateValue = false, DescriptionField = typeof(Users.displayName))]
+        [PXUIField(DisplayName = "Name", Required = true)]
+        [PXString(50, IsUnicode = true, IsKey = true)]
+        protected virtual void Person_Name_CacheAttached(PXCache sedner)
+        {
         }
 
         protected virtual void Person_GroupName_FieldDefaulting(PXCache sedner, PXFieldDefaultingEventArgs e)
@@ -171,16 +185,18 @@ namespace Jamis.Web.Face.Screens
                         {
                             case PXDBOperation.Delete:
                                 Api.DeletePerson(person);
+                                sender.Remove(person);
+                                e.Cancel = true;
                                 break;
                             case PXDBOperation.Insert:
                                 Api.CreatePerson(person);
+                                e.Cancel = true;
                                 break;
                             case PXDBOperation.Update:
                                 Api.UpdatePerson(person);
+                                e.Cancel = true;
                                 break;
                         }
-
-                        e.Cancel = true;
                     }
                 }
             }

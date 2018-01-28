@@ -61,7 +61,7 @@
                                     <px:PXGridColumn DataField="UserData" Width="200" />
                                 </Columns>
                                 <RowTemplate>
-                                    <px:PXTextEdit runat="server" ID="CstPXSelector6" DataField="Name"></px:PXTextEdit>
+                                    <px:PXSelector runat="server" ID="CstPXSelector6" DataField="Name"></px:PXSelector>
                                     <px:PXTextEdit runat="server" ID="CstPXTextEdit7" DataField="UserData"></px:PXTextEdit>
                                 </RowTemplate>
                             </px:PXGridLevel>
